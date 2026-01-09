@@ -1,0 +1,27 @@
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useSearchParams } from "react-router-dom"
+import Login from "@/components/login"
+import SignUp from "@/components/signup"
+
+
+const Auth = () => {
+
+  const [searchParams] = useSearchParams()
+
+  return <div className="mt-36 flex flex-col items-center gap-10">
+    <h1 className="text-5xl font-extrabold">
+      {searchParams.get("createNew") ? "Hold up! Let's create your account first.." :"Login / SignUp"}
+    </h1>
+    <Tabs defaultValue="login" className="w-100">
+  <TabsList className="grid w-full grid-cols-2 gap-6 mb-6">
+    <TabsTrigger value="login">Login</TabsTrigger>
+    <TabsTrigger value="signup">SignUp</TabsTrigger>
+  </TabsList>
+  <TabsContent value="login"><Login /></TabsContent>
+  <TabsContent value="signup"><SignUp /></TabsContent>
+</Tabs>
+  </div>;
+}
+
+
+export default Auth;
