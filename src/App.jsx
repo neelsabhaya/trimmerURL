@@ -21,7 +21,7 @@ const router = createBrowserRouter([
         path:"/auth",
         element: <Auth/>
       },{
-        path:"/link/:id",
+        path:"/link/:id", 
         element: <Link/>
       },
       {
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
   }
 ])
 function App() {
-  return <RouterProvider router={router}/>
+  return (<UrlProvider><RouterProvider router={router}/></UrlProvider>);
 }
 
-export default App
+export default App;
