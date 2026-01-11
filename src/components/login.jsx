@@ -15,6 +15,7 @@ import useFetch from "../hooks/use-fetch";
 import Error from "./error";
 import {BeatLoader} from "react-spinners";
 import { login } from "@/db/apiAuth";
+import { UrlState } from "@/context";
 
 const Login = () => {
   let [searchParams] = useSearchParams();
@@ -37,12 +38,13 @@ const Login = () => {
   };
 
   const {loading, error, fn: fnLogin, data} = useFetch(login, formData);
+  const {fetchUser} = UrlState();
 
   useEffect(() => {
     if (error === null && data) {
       navigate(`/dashboard?${longLink ? `createNew=${longLink}` : ""}`);
+      fetchUser();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [error, data]);
 
     const handleLogin = async () => {
