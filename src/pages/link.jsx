@@ -12,6 +12,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {BarLoader, BeatLoader} from "react-spinners";
 
 const LinkPage = () => {
+  const baseUrl = (import.meta.env.VITE_PUBLIC_BASE_URL || window.location.origin).replace(/\/$/, "");
   const downloadImage = () => {
     const imageUrl = url?.qr;
     const fileName = url?.title;
@@ -50,12 +51,10 @@ const LinkPage = () => {
 
   useEffect(() => {
     fn();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     if (!error && loading === false) fnStats();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading, error]);
 
   if (error) {
@@ -74,15 +73,15 @@ const LinkPage = () => {
       )}
       <div className="flex flex-col gap-8 sm:flex-row justify-between">
         <div className="flex flex-col items-start gap-8 rounded-lg sm:w-2/5">
-          <span className="text-6xl font-extrabold  cursor-pointer">
+          <span className="text-6xl font-extrabold hover:underline cursor-pointer">
             {url?.title}
           </span>
           <a
-            href={`https://trimmer-url.vercel.app/${link}`}
+            href={`${baseUrl}/${link}`}
             target="_blank"
             className="text-3xl sm:text-4xl text-blue-400 font-bold hover:underline cursor-pointer"
           >
-            https://trimmer-url.vercel.app/{link}
+            {baseUrl}/{link}
           </a>
           <a
             href={url?.original_url}
@@ -99,7 +98,7 @@ const LinkPage = () => {
             <Button
               variant="ghost"
               onClick={() =>
-                navigator.clipboard.writeText(`https://trimmer-url.vercel.app/${link}`)
+                navigator.clipboard.writeText(`${baseUrl}/${link}`)
               }
             >
               <Copy />
@@ -125,7 +124,7 @@ const LinkPage = () => {
           </div>
           <img
             src={url?.qr}
-            className="w-auto self-center sm:self-start ring ring-blue-500 p-1 object-contain"
+            className="w-auto self-center sm:self-start p-1 object-contain"
             alt="qr code"
           />
         </div>

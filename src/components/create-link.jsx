@@ -62,7 +62,8 @@ export function CreateLink() {
     if (error === null && data) {
       navigate(`/link/${data[0].id}`);
     }
-  }, [error, data, navigate, longLink, setSearchParams]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [error, data]);
 
   const createNewLink = async () => {
     setErrors([]);
@@ -117,7 +118,7 @@ export function CreateLink() {
         />
         {errors.longUrl && <Error message={errors.longUrl} />}
         <div className="flex items-center gap-2">
-          <Card className="p-2">trimmer-url.vercel.app</Card> /
+          <Card className="p-2 bg-zinc-50 text-blue-500">{(import.meta.env.VITE_PUBLIC_BASE_URL || window.location.origin).replace(/https?:\/\//, '').replace(/\/$/, '')}</Card> /
           <Input
             id="customUrl"
             placeholder="Custom Link (optional)"

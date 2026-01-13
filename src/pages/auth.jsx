@@ -14,7 +14,7 @@ function Auth() {
   useEffect(() => {
     if (isAuthenticated && !loading)
       navigate(`/dashboard?${longLink ? `createNew=${longLink}` : ""}`);
-  }, [isAuthenticated, loading, navigate, longLink]);
+  }, [isAuthenticated, loading, navigate]);
 
   return (
     <div className="mt-36 flex flex-col items-center gap-10">
