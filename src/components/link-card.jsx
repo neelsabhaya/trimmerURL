@@ -1,4 +1,3 @@
-
 import {Copy, Download, LinkIcon, Trash} from "lucide-react";
 import {Link} from "react-router-dom";
 import {Button} from "./ui/button";
@@ -28,6 +27,8 @@ const LinkCard = ({url = [], fetchUrls}) => {
 
   const {loading: loadingDelete, fn: fnDelete} = useFetch(deleteUrl, url.id);
 
+  const baseUrl = (import.meta.env.VITE_PUBLIC_BASE_URL || window.location.origin).replace(/\/$/, "");
+
   return (
     <div className="flex flex-col md:flex-row gap-5 border p-4 bg-gray-900 rounded-lg">
       <img
@@ -40,7 +41,7 @@ const LinkCard = ({url = [], fetchUrls}) => {
           {url?.title}
         </span>
         <span className="text-2xl text-blue-400 font-bold hover:underline cursor-pointer">
-          https://trimmer-url.vercel.app/{url?.custom_url ? url?.custom_url : url.short_url}
+          {baseUrl}/{url?.custom_url ? url?.custom_url : url.short_url}
         </span>
         <span className="flex items-center gap-1 hover:underline cursor-pointer">
           <LinkIcon className="p-1" />
@@ -54,7 +55,7 @@ const LinkCard = ({url = [], fetchUrls}) => {
         <Button
           variant="ghost"
           onClick={() =>
-            navigator.clipboard.writeText(`https://trimmer-url.vercel.app/${url?.short_url}`)
+            navigator.clipboard.writeText(`${baseUrl}/${url?.short_url}`)
           }
         >
           <Copy />

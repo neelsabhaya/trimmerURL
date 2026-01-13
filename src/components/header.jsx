@@ -24,10 +24,8 @@ const Header = () => {
   return (
     <>
       <nav className="py-4 flex justify-between items-center">
-        <Link to="/">
-          <span className="brand-font select-none text-white text-2xl sm:text-2xl font-bold tracking-wider  drop-shadow-md">
-            trimmer.URL
-          </span>
+        <Link to="/" className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+          trimmer.Url
         </Link>
         <div className="flex gap-4">
           {!user ? (

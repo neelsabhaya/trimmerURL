@@ -1,3 +1,4 @@
+
 import {storeClicks} from "@/db/apiClicks";
 import {getLongUrl} from "@/db/apiUrls";
 import useFetch from "@/hooks/use-fetch";
@@ -17,7 +18,6 @@ const RedirectLink = () => {
 
   useEffect(() => {
     fn();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
