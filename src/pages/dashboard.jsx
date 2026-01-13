@@ -31,6 +31,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     fnUrls();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const filteredUrls = urls?.filter((url) =>
@@ -39,6 +40,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (urls?.length) fnClicks();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [urls?.length]);
 
   return (

@@ -50,11 +50,13 @@ const LinkPage = () => {
 
   useEffect(() => {
     fn();
-  }, [fn]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (!error && loading === false) fnStats();
-  }, [loading, error, fnStats]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading, error]);
 
   if (error) {
     navigate("/dashboard");
@@ -72,7 +74,7 @@ const LinkPage = () => {
       )}
       <div className="flex flex-col gap-8 sm:flex-row justify-between">
         <div className="flex flex-col items-start gap-8 rounded-lg sm:w-2/5">
-          <span className="text-6xl font-extrabold hover:underline cursor-pointer">
+          <span className="text-6xl font-extrabold  cursor-pointer">
             {url?.title}
           </span>
           <a
@@ -123,7 +125,7 @@ const LinkPage = () => {
           </div>
           <img
             src={url?.qr}
-            className="w-full self-center sm:self-start ring ring-blue-500 p-1 object-contain"
+            className="w-auto self-center sm:self-start ring ring-blue-500 p-1 object-contain"
             alt="qr code"
           />
         </div>

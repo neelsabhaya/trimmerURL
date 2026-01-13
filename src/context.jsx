@@ -1,3 +1,5 @@
+
+
 import {createContext, useContext, useEffect} from "react";
 import {getCurrentUser} from "./db/apiAuth";
 import useFetch from "./hooks/use-fetch";
@@ -11,7 +13,8 @@ const UrlProvider = ({children}) => {
 
   useEffect(() => {
     fetchUser();
-  }, [fetchUser]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <UrlContext.Provider value={{user, fetchUser, loading, isAuthenticated}}>

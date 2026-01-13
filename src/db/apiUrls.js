@@ -1,5 +1,5 @@
 import supabase, {supabaseUrl} from "./supabase";
-import { UAParser } from "ua-parser-js";
+
 export async function getUrls(user_id) {
   let {data, error} = await supabase
     .from("urls")
@@ -43,29 +43,6 @@ export async function getLongUrl(id) {
   }
 
   return shortLinkData;
-}
-
-const parser = new UAParser();
-
-export const storeClicks = async ({id, originalUrl}) => {
-  try {
-    const res = parser.getResult();
-    const device = res.type || "desktop"; // Default to desktop if type is not detecte
-    const response = await fetch("https://ipapi.co/json");
-    const {city, country_name: country} = await response.json();
-
-    // Record the click
-    await supabase.from("clicks").insert({
-      url_id: id,
-      city: city,
-      country: country,
-      device: device,
-    });
-    window.location.href = originalUrl;
-  } catch (error) {
-    console.error("Error storing click:", error);
-  }
- 
 }
 
 export async function createUrl({title, longUrl, customUrl, user_id}, qrcode) {
