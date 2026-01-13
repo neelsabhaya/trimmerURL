@@ -120,3 +120,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Utility: brand font styling for header text logo */
+.brand-font {
+  font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+    Cantarell, Noto Sans, sans-serif;
+}

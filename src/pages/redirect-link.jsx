@@ -17,13 +17,15 @@ const RedirectLink = () => {
 
   useEffect(() => {
     fn();
-  }, [fn]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (!loading && data) {
       fnStats();
     }
-  }, [loading, data, fnStats]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading]);
 
   if (loading || loadingStats) {
     return (

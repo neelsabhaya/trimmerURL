@@ -1,11 +1,11 @@
-import {useState, useCallback} from "react";
+import {useState} from "react";
 
 const useFetch = (cb, options = {}) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(null);
   const [error, setError] = useState(null);
 
-  const fn = useCallback(async (...args) => {
+  const fn = async (...args) => {
     setLoading(true);
     setError(null);
     try {
@@ -17,7 +17,7 @@ const useFetch = (cb, options = {}) => {
     } finally {
       setLoading(false);
     }
-  }, [cb, options]);
+  };
 
   return {data, loading, error, fn};
 };

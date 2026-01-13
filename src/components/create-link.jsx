@@ -8,16 +8,16 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import {Input} from "@/components/ui/input";
-import {UrlState} from "@/context";
-import {createUrl} from "@/db/apiUrls";
-import useFetch from "@/hooks/use-fetch";
-import {BeatLoader} from "react-spinners";
-import {useEffect, useRef, useState} from "react";
+import {Card} from "./ui/card";
 import {useNavigate, useSearchParams} from "react-router-dom";
-import * as yup from "yup";
-import {QRCode} from "react-qrcode-logo";
-import {Card} from "@/components/ui/card";
+import {useEffect, useRef, useState} from "react";
 import Error from "./error";
+import * as yup from "yup";
+import useFetch from "@/hooks/use-fetch";
+import {createUrl} from "@/db/apiUrls";
+import {BeatLoader} from "react-spinners";
+import {UrlState} from "@/context";
+import {QRCode} from "react-qrcode-logo";
 
 export function CreateLink() {
   const {user} = UrlState();
@@ -62,8 +62,7 @@ export function CreateLink() {
     if (error === null && data) {
       navigate(`/link/${data[0].id}`);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [error, data]);
+  }, [error, data, navigate, longLink, setSearchParams]);
 
   const createNewLink = async () => {
     setErrors([]);
@@ -93,7 +92,7 @@ export function CreateLink() {
       }}
     >
       <DialogTrigger asChild>
-        <Button variant="destructive">Create New Link</Button>
+        <Button variant="secondary">Create New Link</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
@@ -130,7 +129,7 @@ export function CreateLink() {
         <DialogFooter className="sm:justify-start">
           <Button
             type="button"
-            variant="destructive"
+            variant="secondary"
             onClick={createNewLink}
             disabled={loading}
           >

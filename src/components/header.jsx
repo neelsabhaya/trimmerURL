@@ -25,7 +25,9 @@ const Header = () => {
     <>
       <nav className="py-4 flex justify-between items-center">
         <Link to="/">
-          <img src="/logo.png" className="h-16" alt="Trimrr Logo" />
+          <span className="brand-font select-none text-white text-2xl sm:text-2xl font-bold tracking-wider  drop-shadow-md">
+            trimmer.URL
+          </span>
         </Link>
         <div className="flex gap-4">
           {!user ? (
